@@ -1,5 +1,5 @@
 # Ex04 Simple Calculator - React Project
-## Date: 17-03-2026
+## Date: 16/03/2024
 
 ## AIM
 To  develop a Simple Calculator using React.js with clean and responsive design, ensuring a smooth user experience across different screen sizes.
@@ -25,7 +25,7 @@ Create a new file Calculator.css in src/ and add the styling.
 
 ### STEP 6
 Open src/App.js and modify it.
--
+
 ### STEP 7
 Start the development server.
   npm start
@@ -46,125 +46,141 @@ Deploy the website.
 Upload to GitHub Pages for free hosting.
 
 ## PROGRAM
-### Calculatr.jsx
-
+# Main.jsx
 ```
-import React, { useState } from "react";
-import "./Calculator.css";
--
-function Calculator() {
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
 
-  const [input, setInput] = useState("");
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+# index.css
+```
+body{
+  background:#222;
+  font-family: Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
 
-  const handleClick = (value) => {
-    setInput(input + value);
+.calculator{
+  background:#333;
+  padding:20px;
+  border-radius:10px;
+  width:260px;
+  text-align:center;
+}
+
+h1{
+  color:white;
+}
+
+.display{
+  width:100%;
+  height:40px;
+  font-size:20px;
+  margin-bottom:15px;
+  text-align:right;
+  padding:5px;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:10px;
+}
+
+button{
+  padding:15px;
+  font-size:18px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  background:#555;
+  color:white;
+}
+
+button:hover{
+  background:#777;
+}
+
+.zero{
+  grid-column: span 2;
+}
+```
+# app.jsx
+```
+import { useState } from "react";
+
+function App() {
+
+  const [display, setDisplay] = useState("");
+
+  const press = (value) => {
+    setDisplay(display + value);
   };
 
-  const clearInput = () => {
-    setInput("");
+  const clear = () => {
+    setDisplay("");
   };
 
   const calculate = () => {
     try {
-      setInput(eval(input).toString());
+      setDisplay(eval(display).toString());
     } catch {
-      setInput("Error");
+      setDisplay("Error");
     }
   };
 
   return (
     <div className="calculator">
-      <input className="display" type="text" value={input} readOnly />
+
+      <input className="display" value={display} readOnly />
 
       <div className="buttons">
 
-        <button onClick={clearInput}>C</button>
-        <button onClick={() => handleClick("/")}>/</button>
-        <button onClick={() => handleClick("*")}>*</button>
-        <button onClick={() => handleClick("-")}>-</button>
+        <button onClick={clear}>C</button>
+        <button onClick={() => press("/")}>/</button>
+        <button onClick={() => press("*")}>*</button>
+        <button onClick={() => press("-")}>-</button>
 
-        <button onClick={() => handleClick("7")}>7</button>
-        <button onClick={() => handleClick("8")}>8</button>
-        <button onClick={() => handleClick("9")}>9</button>
-        <button onClick={() => handleClick("+")}>+</button>
+        <button onClick={() => press("7")}>7</button>
+        <button onClick={() => press("8")}>8</button>
+        <button onClick={() => press("9")}>9</button>
+        <button onClick={() => press("+")}>+</button>
 
-        <button onClick={() => handleClick("4")}>4</button>
-        <button onClick={() => handleClick("5")}>5</button>
-        <button onClick={() => handleClick("6")}>6</button>
+        <button onClick={() => press("4")}>4</button>
+        <button onClick={() => press("5")}>5</button>
+        <button onClick={() => press("6")}>6</button>
+
+        <button onClick={() => press("1")}>1</button>
+        <button onClick={() => press("2")}>2</button>
+        <button onClick={() => press("3")}>3</button>
+
+        <button onClick={() => press("0")}>0</button>
+        <button onClick={() => press(".")}>.</button>
         <button onClick={calculate}>=</button>
-
-        <button onClick={() => handleClick("1")}>1</button>
-        <button onClick={() => handleClick("2")}>2</button>
-        <button onClick={() => handleClick("3")}>3</button>
-        <button onClick={() => handleClick("0")}>0</button>
 
       </div>
     </div>
   );
 }
 
-export default Calculator;
-```
-
-### Calculator.css
-```
-.calculator {
-  width: 300px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #1e1e1e;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.display {
-  width: 100%;
-  height: 50px;
-  margin-bottom: 10px;
-  font-size: 20px;
-  text-align: right;
-  padding-right: 10px;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-button {
-  padding: 15px;
-  font-size: 18px;
-  cursor: pointer;
-  border: none;
-  background: #444;
-  color: white;
-  border-radius: 5px;
-}
-
-button:hover {
-  background: #666;
-}
-```
-
-### App.js
-```
-import React from "react";
-import Calculator from "./Calculator";
-
-function App() {
-  return (
-    <div>
-      <h1 style={{textAlign:"center"}}>Simple React Calculator</h1>
-      <Calculator />
-    </div>
-  );
-}
-
 export default App;
 ```
+
 ## OUTPUT
-<img width="1885" height="962" alt="image" src="https://github.com/user-attachments/assets/d85ac343-952a-4f4e-8fde-6fa2dce9c214" />
+
+<img width="154" height="243" alt="Screenshot 2026-03-17 135949" src="https://github.com/user-attachments/assets/1e587ae9-2b37-4e07-9bd0-1cbd35209b67" />
+
+<img width="150" height="199" alt="Screenshot 2026-03-17 140624" src="https://github.com/user-attachments/assets/3e100404-f3f7-44dd-8383-46578574132a" />
 
 
 ## RESULT
